@@ -7,6 +7,7 @@ import DropDown, { VibeType } from "../components/DropDown";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
+import AudioPlayer from '../components/AudioPlayer';
 
 
 const Home: NextPage = () => {
@@ -24,15 +25,6 @@ const Home: NextPage = () => {
       bioRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-
-  const prompt = `Generate 2 ${vibe} twitter biographies with no hashtags and clearly labeled "1." and "2.". ${
-    vibe === "Pretentious"
-      ? "Make sure there is a joke in there and it's a little ridiculous."
-      : null
-  }
-      Make sure each generated biography is less than 160 characters, has short sentences that are found in Twitter bios, and base them on this context: ${bio}${
-    bio.slice(-1) === "." ? "" : "."
-  }`;
   
     // If audioUrl changes, this will re-run
     useEffect(() => {
@@ -46,7 +38,6 @@ const Home: NextPage = () => {
     e.preventDefault();
     setGeneratedBios("");
     setLoading(true);
-    
     
     // Assume postData contains the information you want to send to the server
     const postData = {
@@ -65,8 +56,6 @@ const Home: NextPage = () => {
   scrollToBios();
   setLoading(false);
   };
-
-  
 
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
@@ -149,6 +138,7 @@ const Home: NextPage = () => {
                   Your generated podcast
                 </h2>
               </div>
+              {/* <AudioPlayer src={audioURL} /> */}
               <audio controls src={audioURL}>Your browser does not support the audio element.</audio>;
               <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto">
                 {generatedBios}
