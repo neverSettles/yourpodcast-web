@@ -1,0 +1,15 @@
+
+.player {
+    width: 100%;
+  }
+  
+  .playButton {
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .slider {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  
