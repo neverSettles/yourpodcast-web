@@ -1,18 +1,13 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
-import { useRef, useState } from "react";
-import { Toaster, toast } from "react-hot-toast";
+import React, { useRef, useState, useEffect } from "react";
+import axios from 'axios';
+import { Toaster } from "react-hot-toast";
 import DropDown, { VibeType } from "../components/DropDown";
 import Footer from "../components/Footer";
-import Github from "../components/GitHub";
 import Header from "../components/Header";
 import LoadingDots from "../components/LoadingDots";
-import {
-  createParser,
-  ParsedEvent,
-  ReconnectInterval,
-} from "eventsource-parser";
+
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
@@ -38,86 +33,40 @@ const Home: NextPage = () => {
       Make sure each generated biography is less than 160 characters, has short sentences that are found in Twitter bios, and base them on this context: ${bio}${
     bio.slice(-1) === "." ? "" : "."
   }`;
+  
+    // If audioUrl changes, this will re-run
+    useEffect(() => {
+      if (audioURL) {
+        setAudioURL(audioURL);
+      }
+    }, [audioURL]); // This effect runs when audioUrl changes
+
 
   const generatePodcast = async (e: any) => {
     e.preventDefault();
     setGeneratedBios("");
     setLoading(true);
-    // console.log(JSON.stringify({
-    //   tone: vibe,
-    //   duration: duration,
-    //   topic: bio
-    // }));
-    const response = await fetch("/api/proxy", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        duration: duration.toString(),
-        topic: bio
-      }),
-    });
-    // const response = await fetch("https://podcast-be-production.up.railway.app/");
-
-    if (!response.ok) {
-      throw new Error(response.statusText);
-    }
-
-    const data = await response.blob();
-
-    // console.log(data);
-    const objectURL = URL.createObjectURL(data);
-    setAudioURL(objectURL);
-
-    // This data is a ReadableStream
-    // const data = await response.json();
-    // console.log(data["Choo Choo"]);
-    // setGeneratedBios(data["Choo Choo"]);
-
-
-    // let dataStr = '';
-    // for await (const chunk of data) {
-    //   dataStr += chunk;
-    // }
-
-    if (!data) {
-      return;
-    }
-
-    // const onParse = (event: ParsedEvent | ReconnectInterval) => {
-    //   console.log("hellooowoo");
-    //   if (event.type === "event") {
-    //     const data = event.data;
-    //     try {
-    //       const text = JSON.parse(data).text ?? ""
-    //       console.log(text);
-    //       setGeneratedBios((prev) => prev + text);
-    //     } catch (e) {
-    //       console.error(e);
-    //     }
-    //   }
-    // }
-
-    // https://web.dev/streams/#the-getreader-and-read-methods
-    // console.log("hellooowoo1");
-    // const reader = data.getReader();
-
-    // console.log("hellooowoo2");
-    // const decoder = new TextDecoder();
-
-    // console.log("hellooowo3o");
-    // const parser = createParser(onParse);
-    // let done = false;
-    // while (!done) {
-    //   const { value, done: doneReading } = await reader.read();
-    //   done = doneReading;
-    //   const chunkValue = decoder.decode(value);
-    //   parser.feed(chunkValue);
-    // }
-    scrollToBios();
-    setLoading(false);
+    
+    
+    // Assume postData contains the information you want to send to the server
+    const postData = {
+      "topic": bio,
+      "duration": duration,
+      "tone": vibe
   };
+
+  try {
+    const response = await axios.post('https://podcast-be-production.up.railway.app/generate', postData);
+    setAudioURL(response.data.url);
+  } catch (error) {
+    console.error("Error fetching audio URL:", error);
+  }
+
+  scrollToBios();
+  setLoading(false);
+  };
+
+  
 
   return (
     <div className="flex max-w-5xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
@@ -142,7 +91,7 @@ const Home: NextPage = () => {
             rows={4}
             className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring-black my-5"
             placeholder={
-              "e.g. Generative AI developments"
+              "e.g. Best hikes in the bay area"
             }
           />
           <div className="flex mb-5 items-center space-x-3">
@@ -164,6 +113,7 @@ const Home: NextPage = () => {
               "10"
             }
           />
+
 
           {!loading && (
             <button
