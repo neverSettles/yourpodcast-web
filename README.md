@@ -22,6 +22,7 @@ npm install
 Then, run the application in the command line and it will be available at `http://localhost:3000`.
 
 ```bash
+npm run build
 npm run dev
 ```
 
