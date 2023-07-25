@@ -66,7 +66,7 @@ const Home: NextPage = () => {
         <Header />
         <main className="flex flex-1 flex-col items-center justify-center text-center mt-12 sm:mt-20">
           <img src={data?.user?.image || ''} alt="User Image" className="w-20 h-20 rounded-full mb-4" />
-          <button onClick={() => signOut()} className="text-white text-sm underline">Sign Out</button>
+          <button onClick={() => signOut()} className="text-black text-sm underline">Sign Out</button>
           <h1 className="text-5xl font-bold text-black mt-6">
             Generate Podcasts with AI
           </h1>
@@ -126,7 +126,7 @@ const Home: NextPage = () => {
               <>
                 <div>
                   <h2
-                    className="text-4xl font-bold text-white mx-auto"
+                    className="text-4xl font-bold text-black mx-auto"
                     ref={bioRef}
                   >
                     Your Generated Podcast
