@@ -13,7 +13,7 @@ import { useSession, signIn, signOut } from 'next-auth/react';
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
-  const [duration, setDuration] = useState(10);
+  const [duration, setDuration] = useState(1);
   const [vibe, setVibe] = useState<VibeType>("Professional");
   const [audioURL, setAudioURL] = useState<string>("");
   const [generatedBios, setGeneratedBios] = useState<String>("");
