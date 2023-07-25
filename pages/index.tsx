@@ -67,10 +67,10 @@ const Home: NextPage = () => {
         <main className="flex flex-1 flex-col items-center justify-center text-center mt-12 sm:mt-20">
           <img src={data?.user?.image || ''} alt="User Image" className="w-20 h-20 rounded-full mb-4" />
           <button onClick={() => signOut()} className="text-white text-sm underline">Sign Out</button>
-          <h1 className="text-5xl font-bold text-white mt-6">
+          <h1 className="text-5xl font-bold text-black mt-6">
             Generate Podcasts with AI
           </h1>
-          <p className="text-white mt-2">51,204 podcasts generated so far.</p>
+          <p className="text-black mt-2">51,204 podcasts generated so far.</p>
           <div className="bg-white rounded-lg shadow-lg max-w-xl w-full mt-10 p-8">
             <div className="flex items-center space-x-3">
               <p className="text-left font-medium">1. Enter a podcast topic</p>
@@ -88,10 +88,10 @@ const Home: NextPage = () => {
             <div className="block mt-2">
               <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
             </div>
-            <div className="flex items-center space-x-3 mt-4">
+            {/* <div className="flex items-center space-x-3 mt-4">
               <p className="text-left font-medium">3. Duration (min)</p>
             </div>
-            {/* <input
+            <input
               value={duration}
               type='number'
               max={15}
