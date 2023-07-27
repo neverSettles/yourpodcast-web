@@ -6,13 +6,21 @@ export default function Footer() {
       <div>
       Powered by{" "}
         <a
+          href="https://vercel.com/"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold hover:underline transition underline-offset-2"
+        >
+          Vercel{" "}
+        </a>, {" "}
+        <a
           href="https://openai.com/blog/chatgpt"
           target="_blank"
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"
         >
-          ChatGPT{" "}
-        </a>
+          GPT3{" "}
+        </a>, {" "}
         and{" "}
         <a
           href="https://aws.amazon.com/polly/"
