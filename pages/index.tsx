@@ -44,7 +44,7 @@ const Home: NextPage = () => {
     };
 
     try {
-      const response = await axios.post('https://yourpodcast-production.up.railway.app//generate', postData);
+      const response = await axios.post('https://yourpodcast-production.up.railway.app/generate', postData);
       setAudioURL(response.data.url);
     } catch (error) {
       console.error("Error fetching audio URL:", error);
