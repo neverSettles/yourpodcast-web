@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [duration, setDuration] = useState(1);
-  const [vibe, setVibe] = useState<VibeType>("Professional");
+  const [vibe, setVibe] = useState<VibeType>("Story");
   const [audioURL, setAudioURL] = useState<string>("");
   const [generatedBios, setGeneratedBios] = useState<String>("");
 
@@ -44,7 +44,7 @@ const Home: NextPage = () => {
     };
 
     try {
-      const response = await axios.post('https://podcast-be-production.up.railway.app/generate', postData);
+      const response = await axios.post('https://yourpodcast-production.up.railway.app//generate', postData);
       setAudioURL(response.data.url);
     } catch (error) {
       console.error("Error fetching audio URL:", error);
