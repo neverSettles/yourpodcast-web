@@ -22,6 +22,14 @@ export default function Footer() {
           GPT3{" "}
         </a>, {" "}
         <a
+          href="https://openai.com/blog/chatgpt"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold hover:underline transition underline-offset-2"
+        >
+          GPT4{" "}
+        </a>, {" "}
+        <a
           href="https://claude.ai/"
           target="_blank"
           rel="noreferrer"
@@ -37,7 +45,7 @@ export default function Footer() {
         >
           Eleven labs, 
         </a>
-        and{" "}
+        {" "}and{" "}
         <a
           href="https://aws.amazon.com/polly/"
           target="_blank"
