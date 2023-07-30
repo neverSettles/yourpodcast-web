@@ -35,7 +35,7 @@ export default function Footer() {
           rel="noreferrer"
           className="font-bold hover:underline transition underline-offset-2"
         >
-          Eleven labs.
+          Eleven labs, 
         </a>
         and{" "}
         <a
