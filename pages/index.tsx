@@ -145,7 +145,7 @@ const Home: NextPage = () => {
                     Your Generated Podcast
                   </h2>
                 </div>
-                <iframe src={transistorURL} width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+                <iframe src={transistorURL} width="100%" height="180" frameBorder="0" scrolling="no"></iframe>
 
 
                 <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto mt-4">
