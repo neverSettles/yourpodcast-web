@@ -21,6 +21,22 @@ export default function Footer() {
         >
           GPT3{" "}
         </a>, {" "}
+        <a
+          href="https://claude.ai/"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold hover:underline transition underline-offset-2"
+        >
+          Claude{" "}
+        </a>, {" "}
+        <a
+          href="https://elevenlabs.io/"
+          target="_blank"
+          rel="noreferrer"
+          className="font-bold hover:underline transition underline-offset-2"
+        >
+          Eleven labs.
+        </a>
         and{" "}
         <a
           href="https://aws.amazon.com/polly/"

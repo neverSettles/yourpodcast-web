@@ -16,6 +16,7 @@ const Home: NextPage = () => {
   const [duration, setDuration] = useState(1);
   const [vibe, setVibe] = useState<VibeType>("Story");
   const [audioURL, setAudioURL] = useState<string>("");
+  const [transistorURL, setTransistorURL] = useState<string>("");
   const [generatedBios, setGeneratedBios] = useState<String>("");
 
   const bioRef = useRef<null | HTMLDivElement>(null);
@@ -32,6 +33,12 @@ const Home: NextPage = () => {
     }
   }, [audioURL]);
 
+  useEffect(() => {
+    if (transistorURL) {
+      setTransistorURL(transistorURL);
+    }
+  }, [transistorURL]);
+
   const generatePodcast = async (e: any) => {
     e.preventDefault();
     setGeneratedBios("");
@@ -45,7 +52,13 @@ const Home: NextPage = () => {
 
     try {
       const response = await axios.post('https://yourpodcast-production.up.railway.app/generate', postData);
-      setAudioURL(response.data.url);
+      if (response.data.url) {
+        setAudioURL(response.data.url);
+      }
+      if (response.data.share_url) {
+        setTransistorURL(response.data.share_url);
+      }
+      
     } catch (error) {
       console.error("Error fetching audio URL:", error);
     }
@@ -122,6 +135,25 @@ const Home: NextPage = () => {
           />
           <hr className="w-16 h-px bg-white border-1 mt-10" />
           <div className="space-y-10 mt-10">
+            {transistorURL && (
+              <>
+                <div>
+                  <h2
+                    className="text-4xl font-bold text-black mx-auto"
+                    ref={bioRef}
+                  >
+                    Your Generated Podcast
+                  </h2>
+                </div>
+                <iframe src={transistorURL} width="100%" height="180" frameborder="0" scrolling="no"></iframe>
+
+
+                <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto mt-4">
+                  {generatedBios}
+                </div>
+              </>
+            )
+            }
             {audioURL && (
               <>
                 <div>
@@ -133,6 +165,7 @@ const Home: NextPage = () => {
                   </h2>
                 </div>
                 <audio controls src={audioURL} className="mt-4"></audio>
+
                 <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto mt-4">
                   {generatedBios}
                 </div>
