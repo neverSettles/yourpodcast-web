@@ -6,7 +6,7 @@ export default async (req: any, res: any) => {
   const { query } = req;
 
   // Build your external API URL with the necessary query parameters
-  const url = new URL('https://podcast-be-production.up.railway.app/generate');
+  const url = new URL('https://yourpodcast-production.up.railway.app/generate');
   Object.keys(query).forEach(key => url.searchParams.append(key, query[key]));
 
   try {
