@@ -68,7 +68,27 @@ const Home: NextPage = () => {
   };
 
   const { data, status } = useSession();
-  if (status === 'authenticated') {
+  if (status === 'authenticated' || true) {
+    console.log(transistorURL);
+    console.log('transistorURL');
+    // let str = '<iframe width="100%" height="180" frameborder="no" scrolling="no" seamless src="https://share.transistor.fm/e/254962c7"></iframe>';
+    let str = transistorURL;
+    let url = "";
+    let start = str.indexOf('src="');
+    if(start !== -1) {
+      start += 5; // skip 'src="'
+      let end = str.indexOf('"', start);
+      if(end !== -1) {
+        url = str.substring(start, end);
+        console.log(url); // https://share.transistor.fm/e/254962c7
+      }
+      else {
+        console.log("No end quote found for src");
+      }
+    }
+    else {
+      console.log("No src attribute found");
+    }
     return (
       <div className="bg-gradient-to-r from-white-700 via-white-800 to-white-900 min-h-screen flex flex-col items-center justify-center py-2">
         <Head>
@@ -78,12 +98,12 @@ const Home: NextPage = () => {
   
         <Header />
         <main className="flex flex-1 flex-col items-center justify-center text-center mt-12 sm:mt-20">
-          <img src={data?.user?.image || ''} alt="User Image" className="w-20 h-20 rounded-full mb-4" />
-          <button onClick={() => signOut()} className="text-black text-sm underline">Sign Out</button>
+          {/* <img src={data?.user?.image || ''} alt="User Image" className="w-20 h-20 rounded-full mb-4" /> */}
+          {/* <button onClick={() => signOut()} className="text-black text-sm underline">Sign Out</button> */}
           <h1 className="text-5xl font-bold text-black mt-6">
             Generate Podcasts with AI
           </h1>
-          <p className="text-black mt-2">51,204 podcasts generated so far.</p>
+          <p className="text-black mt-2">51 podcasts generated so far.</p>
           <div className="bg-white rounded-lg shadow-lg max-w-xl w-full mt-10 p-8">
             <div className="flex items-center space-x-3">
               <p className="text-left font-medium">1. Enter a podcast topic</p>
@@ -145,9 +165,11 @@ const Home: NextPage = () => {
                     Your Generated Podcast
                   </h2>
                 </div>
-                <iframe src={transistorURL} width="100%" height="180" frameBorder="0" scrolling="no"></iframe>
-
-
+                {/* <iframe src={transistorURL} width="100%" height="180" frameBorder="0" scrolling="no"></iframe> */}
+                <iframe width="100%" height="180" frameBorder="no" scrolling="no" seamless src={url}></iframe>
+                
+                {/* <iframe width="100%" height="180" frameBorder="no" scrolling="no" seamless src={}></iframe> */}
+                {/* <iframe width="100%" height="180" frameBorder="no" scrolling="no" seamless src="https://share.transistor.fm/e/7477f7a6"></iframe> */}
                 <div className="space-y-8 flex flex-col items-center justify-center max-w-xl mx-auto mt-4">
                   {generatedBios}
                 </div>
@@ -177,7 +199,7 @@ const Home: NextPage = () => {
       </div>
     );
   }
-
+console.log(transistorURL);
   return (
     <div className="bg-gradient-to-r from-white-700 via-white-800 to-white-900 min-h-screen flex flex-col items-center justify-center py-2">
       <Head>
@@ -190,9 +212,9 @@ const Home: NextPage = () => {
         <h1 className="text-5xl font-bold text-black mt-6">
           Welcome to AI Podcast Generator
         </h1>
-        <button onClick={() => signIn('google')} className="bg-black rounded-lg text-white font-medium px-4 py-2 mt-8 w-full hover:bg-black/80">
+        {/* <button onClick={() => signIn('google')} className="bg-black rounded-lg text-white font-medium px-4 py-2 mt-8 w-full hover:bg-black/80">
           Sign in with Google
-        </button>
+        </button> */}
       </main>
       <Footer />
     </div>
