@@ -14,7 +14,7 @@ const Home: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [bio, setBio] = useState("");
   const [duration, setDuration] = useState(1);
-  const [vibe, setVibe] = useState<VibeType>("Story");
+  const [vibe, setVibe] = useState<VibeType>("Full Podcast");
   const [audioURL, setAudioURL] = useState<string>("");
   const [transistorURL, setTransistorURL] = useState<string>("");
   const [generatedBios, setGeneratedBios] = useState<String>("");
@@ -51,7 +51,11 @@ const Home: NextPage = () => {
     };
 
     try {
-      const response = await axios.post('https://yourpodcast-production.up.railway.app/generate', postData);
+      const localhost = "http://localhost:5001/generate"
+      const remote = "https://yourpodcast-production.up.railway.app/generate"
+      const generationUrl = remote;
+
+      const response = await axios.post(generationUrl, postData);
       if (response.data.url) {
         setAudioURL(response.data.url);
       }
@@ -121,17 +125,17 @@ const Home: NextPage = () => {
             <div className="block mt-2">
               <DropDown vibe={vibe} setVibe={(newVibe) => setVibe(newVibe)} />
             </div>
-            {/* <div className="flex items-center space-x-3 mt-4">
-              <p className="text-left font-medium">3. Duration (min)</p>
+            <div className="flex items-center space-x-3 mt-4">
+              <p className="text-left font-medium">3. Duration (min 10 mins, max 30 mins)</p>
             </div>
             <input
               value={duration}
               type='number'
-              max={15}
+              max={30}
               onChange={(e) => setDuration(Number(e.target.value))}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-black focus:ring focus:ring-black mt-2 p-3"
               placeholder="10"
-            /> */}
+            />
             {!loading ? (
               <button
                 className="bg-black rounded-lg text-white font-medium px-4 py-2 mt-8 w-full hover:bg-black/80"
@@ -193,6 +197,19 @@ const Home: NextPage = () => {
                 </div>
               </>
             )}
+          </div>
+          <div className="flex flex-col items-center justify-center max-w-xl mx-auto mt-4">
+              Check out the most recently generated podcast below!
+              <iframe 
+                  style={{borderRadius: '12px'}} 
+                  src="https://open.spotify.com/embed/show/6LiNaGTDMiUJqxh9e8p5Z5?utm_source=generator&theme=0" 
+                  width="100%" 
+                  height="152" 
+                  frameBorder="0" 
+                  allowFullScreen={true}
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy">
+              </iframe>
           </div>
         </main>
         <Footer />
