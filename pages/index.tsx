@@ -53,7 +53,14 @@ const Home: NextPage = () => {
     try {
       const localhost = "http://localhost:5001/generate"
       const remote = "https://yourpodcast-production.up.railway.app/generate"
-      const generationUrl = remote;
+      var generationUrl = localhost;
+      if (isLocalhost()) {
+        console.log("Running on localhost");
+        generationUrl = localhost;
+      } else {
+        console.log("Running on remote");
+        generationUrl = remote;
+      }
 
       const response = await axios.post(generationUrl, postData);
       if (response.data.url) {
@@ -69,6 +76,13 @@ const Home: NextPage = () => {
 
     scrollToBios();
     setLoading(false);
+  };
+
+  const isLocalhost = (): boolean => {
+    if (typeof window !== 'undefined') {
+      return window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+    }
+    return false;
   };
 
   const { data, status } = useSession();
@@ -199,8 +213,8 @@ const Home: NextPage = () => {
             )}
           </div>
           <div className="flex flex-col items-center justify-center max-w-xl mx-auto mt-4">
-              Check out the most recently generated podcast below!
-              <iframe 
+              Check out the most recently generated podcasts below!
+              {/* <iframe 
                   style={{borderRadius: '12px'}} 
                   src="https://open.spotify.com/embed/show/6LiNaGTDMiUJqxh9e8p5Z5?utm_source=generator&theme=0" 
                   width="100%" 
@@ -209,7 +223,8 @@ const Home: NextPage = () => {
                   allowFullScreen={true}
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                   loading="lazy">
-              </iframe>
+              </iframe> */}
+              <iframe width="100%" height="390" frameBorder="0" scrolling="no" seamless src="https://share.transistor.fm/e/your-podcast-8bd32b13-07a6-4317-bc8f-5c91c777b1ac/playlist"></iframe>
           </div>
         </main>
         <Footer />
