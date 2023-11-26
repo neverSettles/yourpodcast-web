@@ -5,7 +5,7 @@ module.exports = {
     return [
       {
         source: "/github",
-        destination: "https://github.com/Nutlope/twitterbio",
+        destination: "https://github.com/neverSettles/yourpodcast-web",
         permanent: false,
       },
       {
