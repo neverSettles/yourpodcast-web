@@ -25,7 +25,7 @@ export default function Footer() {
       </div>
       <div className="flex space-x-4 pb-4 sm:pb-0">
         <Link
-          href="https://github.com/neverSettles/yourpodcast-web"
+          href="https://github.com/IsaacWatt/Podcast-BE"
           className="group"
           aria-label="Podcast"
         >
