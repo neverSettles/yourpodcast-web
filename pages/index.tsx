@@ -224,7 +224,7 @@ const Home: NextPage = () => {
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
                   loading="lazy">
               </iframe> */}
-              <iframe width="100%" height="390" frameBorder="0" scrolling="no" seamless src="https://share.transistor.fm/e/your-podcast-8bd32b13-07a6-4317-bc8f-5c91c777b1ac/playlist"></iframe>
+              <iframe style="border-radius:12px" src="https://open.spotify.com/embed/show/6LiNaGTDMiUJqxh9e8p5Z5?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
           </div>
         </main>
         <Footer />
