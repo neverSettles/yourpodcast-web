@@ -122,6 +122,8 @@ const Home: NextPage = () => {
             Generate Podcasts with AI
           </h1>
           <p className="text-black mt-2">51 podcasts generated so far.</p>
+          <p className="text-black mt-2">Hello, sorry, we've turned off the backend for the project so podcast generation will no longer work. </p> 
+          <p className="text-black mt-2">Speech to text is too expensive at the moment to continue to support the platform. </p>
           <div className="bg-white rounded-lg shadow-lg max-w-xl w-full mt-10 p-8">
             <div className="flex items-center space-x-3">
               <p className="text-left font-medium">1. Enter a podcast topic</p>
